@@ -8,7 +8,18 @@ describe('leisure', function() {
     beforeEach(function() {
       var acceptHeader = 'application/vnd.shop.Order+json, application/vnd.shop.Order+xml, text/xml';
       req = { headers: { accept: acceptHeader } };
-      res = { headers: { 'content-type': '' } };
+      res = {
+        statusCode: 200,
+        headers: { 'content-type': '' },
+        body: '',
+        writeHead: function(statusCode, headers) {
+          this.statusCode = statusCode;
+          this.headers = headers;
+        },
+        end: function(body) {
+          this.body = body;
+        }
+      };
     });
 
     it('adds an `accepted` property to the request', function(done) {
@@ -73,6 +84,32 @@ describe('leisure', function() {
         done();
       };
 
+      accept(req, res, next);
+    });
+
+    it('sends the top priority media type when no acceptable media type exists and strict mode is disabled', function(done) {
+      var mediaTypes = [{ contentType: 'text/xml' }];
+      var accept = leisure.accept(mediaTypes, { strictMode: false });
+      req.headers['accept'] = 'text/plain';
+
+      var next = function() {
+        req.accepted.contentType.should.equal('text/xml');
+        done();
+      };
+      
+      accept(req, res, next);
+    });
+
+    it('responds with Not Acceptable when no acceptable media type exists and strict mode is enabled', function(done) {
+      var mediaTypes = [{ contentType: 'text/xml' }];
+      var accept = leisure.accept(mediaTypes, { strictMode: true });
+      req.headers['accept'] = 'text/plain';
+
+      var next = function() {
+        res.statusCode.should.equal(406);
+        done();
+      };
+      
       accept(req, res, next);
     });
   });
