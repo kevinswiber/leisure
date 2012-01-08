@@ -1,0 +1,28 @@
+{
+  "name": "leisure",
+  "version": "0.1.0-alpha",
+  "author": "Kevin Swiber <kswiber@gmail.com>",
+  "description": "Add hypermedia awareness to your REST services.",
+  "scripts": {
+    "test": "mocha --reporter dot"
+  },
+  "main": "./index.js",
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/kevinswiber/leisure.git"
+  },
+	"keywords": [
+		"rest",
+		"hypermedia",
+		"http",
+		"services"
+	],
+	"devDependencies": {
+		"should": "*",
+		"mocha": "*"
+	},
+	"license": "MIT/X11",
+	"engine": {
+		"node": ">=0.4"
+	}
+}
