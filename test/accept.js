@@ -11,7 +11,7 @@ describe('leisure', function() {
       res = { headers: { 'content-type': '' } };
     });
 
-    it('should add an `accepted` property to the request', function(done) {
+    it('adds an `accepted` property to the request', function(done) {
       var accept = leisure.accept([{ contentType: 'text/xml' }]);
       var next = function() {
         req.accepted.should.be.a('object');
@@ -23,7 +23,7 @@ describe('leisure', function() {
       accept(req, res, next);
     });
 
-    it('should accept single matching media types with no format specified', function(done) {
+    it('accepts media types with no format specified', function(done) {
       var mediaTypes = [{ contentType: 'application/vnd.shop.Order' }];
       var accept = leisure.accept(mediaTypes);
       req.headers['accept'] = 'application/vnd.shop.Order';
@@ -36,7 +36,7 @@ describe('leisure', function() {
       accept(req, res, next);
     });
 
-    it('should accept single matching media types with formats specified', function(done) {
+    it('accepts media types with formats specified', function(done) {
       var mediaTypes = [{ contentType: 'application/vnd.shop.Order', formats: ['json', 'xml'] }];
       var accept = leisure.accept(mediaTypes);
       req.headers['accept'] = 'application/vnd.shop.Order+json';
@@ -50,7 +50,7 @@ describe('leisure', function() {
       accept(req, res, next);
     });
 
-    it('should set the response content-type to the appropriate media type', function(done) {
+    it('sets the response content-type to the appropriate media type', function(done) {
       var mediaTypes = [{ contentType: 'text/xml' }];
       var accept = leisure.accept(mediaTypes);
       req.headers['accept'] = 'text/xml';
@@ -63,7 +63,7 @@ describe('leisure', function() {
       accept(req, res, next);
     });
 
-    it('should send the top priority media type when no accept header exists', function(done) {
+    it('sends the top priority media type when no accept header exists', function(done) {
       var mediaTypes = [{ contentType: 'text/xml' }, { contentType: 'text/plain' }];
       var accept = leisure.accept(mediaTypes);
       if (req.headers['accept']) { delete req.headers['accept']; }
