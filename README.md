@@ -87,7 +87,7 @@ $ npm install leisure
 ### leisure.options
 Read global options in leisure.
 
-### leisure.options.strictMode
+#### leisure.options.strictMode
 When `strictMode` is `true`, leisure sends a `406 Not Acceptable` response when there is no matching `Accept` value in the request.  When `strictMode` is `false`, leisure will respond with the most preferable media type.  The default value is `false`.
 
 ### leisure.setOption(key, val)
