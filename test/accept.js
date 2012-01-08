@@ -6,7 +6,7 @@ var res;
 describe('leisure', function() {
   describe('#accept', function() {
     beforeEach(function() {
-      var acceptHeader = 'vnd.shop.Order+json, vnd.shop.Order+xml, text/xml';
+      var acceptHeader = 'application/vnd.shop.Order+json, application/vnd.shop.Order+xml, text/xml';
       req = { headers: { accept: acceptHeader } };
       res = { headers: { 'content-type': '' } };
     });
@@ -24,12 +24,12 @@ describe('leisure', function() {
     });
 
     it('should accept single matching media types with no format specified', function(done) {
-      var mediaTypes = [{ contentType: 'vnd.shop.Order' }];
+      var mediaTypes = [{ contentType: 'application/vnd.shop.Order' }];
       var accept = leisure.accept(mediaTypes);
-      req.headers['accept'] = 'vnd.shop.Order';
+      req.headers['accept'] = 'application/vnd.shop.Order';
 
       var next = function() {
-        req.accepted.contentType.should.equal('vnd.shop.Order');
+        req.accepted.contentType.should.equal('application/vnd.shop.Order');
         done();
       };
 
@@ -37,12 +37,12 @@ describe('leisure', function() {
     });
 
     it('should accept single matching media types with formats specified', function(done) {
-      var mediaTypes = [{ contentType: 'vnd.shop.Order', formats: ['json', 'xml'] }];
+      var mediaTypes = [{ contentType: 'application/vnd.shop.Order', formats: ['json', 'xml'] }];
       var accept = leisure.accept(mediaTypes);
-      req.headers['accept'] = 'vnd.shop.Order+json';
+      req.headers['accept'] = 'application/vnd.shop.Order+json';
 
       var next = function() {
-        req.accepted.contentType.should.equal('vnd.shop.Order');
+        req.accepted.contentType.should.equal('application/vnd.shop.Order');
         req.accepted.format.should.equal('json');
         done();
       };

@@ -31,14 +31,14 @@ app.listen(3000);
 ### ./media/dashboard.js
 ```javascript
 exports.mediaTypes = [
-  { contentType = 'vnd.shop.Dashboard', formats = ['json', 'xml'] },
+  { contentType = 'application/vnd.shop.Dashboard', formats = ['json', 'xml'] },
   { contentType = 'application/json' },
   { contentType = 'text/xml' }
 ];
 
 exports.create = function(mediaType) {
   var mediaFactory = {
-    { 'vnd.shop.Dashboard': createDashboardMedia(mediaType.format) },
+    { 'application/vnd.shop.Dashboard': createDashboardMedia(mediaType.format) },
     { 'application/json': createDashboardMedia('json') },
     { 'text/xml': createDashboardMedia('xml') }
   };
@@ -71,7 +71,7 @@ $ node app.js
 Set the Accept header on a curl request to `http://localhost:3000`.
 
 ```bash
-$ curl -H "Accept: vnd.shop.Dashboard+json" -X GET "http://localhost:3000"
+$ curl -H "Accept: application/vnd.shop.Dashboard+json" -X GET "http://localhost:3000"
 { "account": { "href":  "/account" }, "products": { "href": "/products" } }
 ```
 
@@ -94,15 +94,15 @@ Example:
 
 ```javascript
 [
-  { contentType: 'vnd.shop.Order', formats: ['json', 'xml'] }, 
+  { contentType: 'application/vnd.shop.Order', formats: ['json', 'xml'] }, 
   { contentType: 'application/json' }
 ]
 ```
 
 The `mediaTypes` array is prioritized by index.  In the example above, the the preference order is: 
 
-1. `vnd.shop.Order+json`
-2. `vnd.shop.Order+xml`
+1. `application/vnd.shop.Order+json`
+2. `application/vnd.shop.Order+xml`
 3. `application/json`
 
 ## Tests
