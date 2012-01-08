@@ -84,15 +84,6 @@ $ npm install leisure
 ```
 
 ## Usage
-### leisure.options
-Read global options in leisure.
-
-#### leisure.options.strictMode
-When `strictMode` is `true`, leisure sends a `406 Not Acceptable` response when there is no matching `Accept` value in the request.  When `strictMode` is `false`, leisure will respond with the most preferable media type.  The default value is `false`.
-
-### leisure.setOption(key, val)
-`setOption` sets a global option in leisure.
-
 ### leisure.accept(mediaTypes, [options])
 `leisure.accept` is [connect](https://github.com/senchalabs/connect)-compatible middleware that compares a list of accepted media types to those supported by the client via the HTTP `Accept` header and selects the most preferred media type available.  The preferred media type is appended to the request as `req.accepted`.  The `mediaTypes` parameter is required.
 
@@ -125,6 +116,16 @@ leisure.accept([{ contentType: 'text/xml' }], { strictMode: true });
 
 ##### options.strictMode
 `strictMode` sends a `406 Not Acceptable` response when no media type is matched.  The default value is taken from `leisure.options.strictMode`.
+
+### leisure.options
+Global options in leisure.
+
+### leisure.setOption(key, val)
+`setOption` sets a global option in leisure.
+
+#### strictMode
+When the `strictMode` option is `true`, leisure sends a `406 Not Acceptable` response when there is no matching `Accept` value in the request.  When `strictMode` is `false`, leisure will respond with the most preferable media type.  The default value is `false`.
+
 
 ## Tests
 Tests are written in mocha.  To run, use:
