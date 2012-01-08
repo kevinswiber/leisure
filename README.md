@@ -31,9 +31,9 @@ app.listen(3000);
 ### ./media/dashboard.js
 ```javascript
 exports.mediaTypes = [
-  { contentType = 'application/vnd.shop.Dashboard', formats = ['json', 'xml'] },
-  { contentType = 'application/json' },
-  { contentType = 'text/xml' }
+  { contentType: 'application/vnd.shop.Dashboard', formats: ['json', 'xml'] },
+  { contentType: 'application/json' },
+  { contentType: 'text/xml' }
 ];
 
 exports.create = function(mediaType) {
