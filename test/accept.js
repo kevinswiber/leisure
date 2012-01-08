@@ -62,5 +62,18 @@ describe('leisure', function() {
 
       accept(req, res, next);
     });
+
+    it('should send the top priority media type when no accept header exists', function(done) {
+      var mediaTypes = [{ contentType: 'text/xml' }, { contentType: 'text/plain' }];
+      var accept = leisure.accept(mediaTypes);
+      if (req.headers['accept']) { delete req.headers['accept']; }
+
+      var next = function() {
+        req.accepted.contentType.should.equal('text/xml');
+        done();
+      };
+
+      accept(req, res, next);
+    });
   });
 });
