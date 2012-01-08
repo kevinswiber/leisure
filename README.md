@@ -91,6 +91,7 @@ $ npm install leisure
 `mediaTypes` is an array of acceptable media types for the request.  Each media type in the array needs a `contentType` property with the appropriate media type and an optional `formats` property listing acceptable formats.
 
 Example: 
+
 ```javascript
 [
   { contentType: 'vnd.shop.Order', formats: ['json', 'xml'] }, 
