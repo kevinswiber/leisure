@@ -63,11 +63,13 @@ function createDashboardMedia(format) {
 ### Run
 
 Launch the app.
+
 ```bash
 $ node app.js
 ```
 
 Set the Accept header on a curl request to `http://localhost:3000`.
+
 ```bash
 $ curl -H "Accept: vnd.shop.Order+json" -X GET "http://localhost:3000"
 { 'account': { 'href':  '/account' }, 'products': { 'href': '/products' } }
@@ -76,6 +78,7 @@ $ curl -H "Accept: vnd.shop.Order+json" -X GET "http://localhost:3000"
 Voila!
 
 ## Install
+
 ```bash
 $ npm install leisure
 ```
@@ -103,6 +106,7 @@ The `mediaTypes` array is prioritized by index.  In the example above, the the p
 
 ## Tests
 Tests are written in mocha.  To run, use:
+
 ```bash
 $ npm test
 ```
