@@ -17,6 +17,9 @@
 		"http",
 		"services"
 	],
+	"dependencies": {
+		"underscore": "*"
+	},
 	"devDependencies": {
 		"should": "*",
 		"mocha": "*"
