@@ -72,7 +72,7 @@ Set the Accept header on a curl request to `http://localhost:3000`.
 
 ```bash
 $ curl -H "Accept: vnd.shop.Order+json" -X GET "http://localhost:3000"
-{ "account": { "href":  "/account" }, "products": { "href': "/products" } }
+{ "account": { "href":  "/account" }, "products": { "href": "/products" } }
 ```
 
 Voila!
