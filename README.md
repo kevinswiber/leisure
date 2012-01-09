@@ -57,7 +57,6 @@ function createDashboardMedia(format) {
       return formats[format];
     }
 }
-
 ```
 
 ### Run

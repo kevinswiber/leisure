@@ -18,6 +18,9 @@ describe('leisure', function() {
         },
         end: function(body) {
           this.body = body;
+        },
+        setHeader: function(key, value) {
+          this.headers[key.toLowerCase()] = value;
         }
       };
     });
