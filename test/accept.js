@@ -108,12 +108,12 @@ describe('leisure', function() {
       var accept = leisure.accept(mediaTypes, { strictMode: true });
       req.headers['accept'] = 'text/plain';
 
-      var next = function() {
+      res.end = function() {
         res.statusCode.should.equal(406);
         done();
       };
-      
-      accept(req, res, next);
+
+      accept(req, res);
     });
   });
 });
