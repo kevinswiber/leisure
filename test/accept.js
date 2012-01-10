@@ -115,5 +115,18 @@ describe('leisure', function() {
 
       accept(req, res);
     });
+
+		it('sorts headers using the relative quality factor', function(done) {
+			var mediaTypes = [{ contentType: 'text/xml' }, { contentType: 'text/plain' }];
+			var accept = leisure.accept(mediaTypes);
+			req.headers['accept'] = 'text/plain;q=0.7, text/xml;q=0.8';
+
+			var next = function() {
+				req.accepted.contentType.should.equal('text/xml');
+				done();
+			};
+
+			accept(req, res, next);
+		});
   });
 });
