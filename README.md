@@ -38,9 +38,9 @@ exports.mediaTypes = [
 
 exports.create = function(mediaType) {
   var mediaFactory = {
-    { 'application/vnd.shop.Dashboard': createDashboardMedia(mediaType.format) },
-    { 'application/json': createDashboardMedia('json') },
-    { 'text/xml': createDashboardMedia('xml') }
+    'application/vnd.shop.Dashboard': createDashboardMedia(mediaType.format),
+    'application/json': createDashboardMedia('json'),
+    'text/xml': createDashboardMedia('xml')
   };
 
   var media = mediaFactory[mediaType.contentType]();
