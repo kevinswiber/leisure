@@ -1,6 +1,6 @@
 {
   "name": "leisure",
-  "version": "0.1.0-alpha",
+  "version": "0.1.0",
   "author": "Kevin Swiber <kswiber@gmail.com>",
   "description": "Add hypermedia awareness to your REST services.",
   "scripts": {
