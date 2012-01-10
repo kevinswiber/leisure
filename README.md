@@ -98,7 +98,7 @@ Example:
 ]
 ```
 
-The `mediaTypes` array is prioritized by index.  In the example above, the the preference order is: 
+The `mediaTypes` array is prioritized by index.  In the example above, the preference order is: 
 
 1. `application/vnd.shop.Order+json`
 2. `application/vnd.shop.Order+xml`
