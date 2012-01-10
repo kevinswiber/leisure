@@ -117,7 +117,7 @@ describe('leisure', function() {
     });
 
 		it('sorts headers using the relative quality factor', function(done) {
-			var mediaTypes = [{ contentType: 'text/xml' }, { contentType: 'text/plain' }];
+			var mediaTypes = [{ contentType: 'text/plain' }, { contentType: 'text/xml' }];
 			var accept = leisure.accept(mediaTypes);
 			req.headers['accept'] = 'text/plain;q=0.7, text/xml;q=0.8';
 
