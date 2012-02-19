@@ -14,13 +14,20 @@ leisure offers:
 ```javascript
 var express = require('express');
 var leisure = require('leisure');
-var accept = leisure.accept;
+
+var mediaTypes = [
+  { contentType: 'application/vnd.shop', formats: ['json', 'xml'] },
+  { contentType: 'application/json' },
+  { contentType: 'text/xml' }
+];
 
 var app = express.createServer();
 
+app.use(leisure.accept(mediaTypes));
+
 var dashboard = require('./media/dashboard');
 
-app.get('/', accept(dashboard.mediaTypes), function(req, res) {
+app.get('/', function(req, res) {
   var media = dashboard.create(req.accepted);
   res.send(media);
 });
@@ -30,20 +37,14 @@ app.listen(3000);
 
 ### ./media/dashboard.js
 ```javascript
-exports.mediaTypes = [
-  { contentType: 'application/vnd.shop.Dashboard', formats: ['json', 'xml'] },
-  { contentType: 'application/json' },
-  { contentType: 'text/xml' }
-];
-
 exports.create = function(mediaType) {
   var mediaFactory = {
-    'application/vnd.shop.Dashboard': createDashboardMedia(mediaType.format),
+    'application/vnd.shop': createDashboardMedia(mediaType.format),
     'application/json': createDashboardMedia('json'),
     'text/xml': createDashboardMedia('xml')
   };
 
-  var media = mediaFactory[mediaType.contentType]();
+  var media = mediaFactory[mediaType.contentType].call(this);
   return media;
 };
 
@@ -70,7 +71,12 @@ $ node app.js
 Set the Accept header on a curl request to `http://localhost:3000`.
 
 ```bash
-$ curl -H "Accept: application/vnd.shop.Dashboard+json" -X GET "http://localhost:3000"
+$ curl -i -H "Accept: application/vnd.shop+json" -X GET http://localhost:3000
+HTTP/1.1 200 OK
+Content-Type: application/vnd.shop+json
+Content-Length: 75
+Connection: keep-alive
+
 { "account": { "href":  "/account" }, "products": { "href": "/products" } }
 ```
 
@@ -93,15 +99,15 @@ Example:
 
 ```javascript
 [
-  { contentType: 'application/vnd.shop.Order', formats: ['json', 'xml'] }, 
+  { contentType: 'application/vnd.shop', formats: ['json', 'xml'] }, 
   { contentType: 'application/json' }
 ]
 ```
 
 The `mediaTypes` array is prioritized by index.  In the example above, the preference order is: 
 
-1. `application/vnd.shop.Order+json`
-2. `application/vnd.shop.Order+xml`
+1. `application/vnd.shop+json`
+2. `application/vnd.shop+xml`
 3. `application/json`
 
 #### options
