@@ -136,7 +136,7 @@ console.log(leisure.options.strictMode); // => false
 When the `strictMode` option is `true`, leisure sends a `406 Not Acceptable` response when there is no matching `Accept` value in the request.  When `strictMode` is `false`, leisure will respond with the most preferable media type.  The default value is `false`.  This can be overriden for each middleware instance (see `leisure.accept`).
 
 ```javascript
-leisure.setOptions('strictMode', true);
+leisure.setOption('strictMode', true);
 ```
 
 
